@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 public class PaymentController {
     @Autowired
@@ -45,6 +47,13 @@ public class PaymentController {
 
     @GetMapping("pay/port")
     public String getPaymentPort(){
+        return serverPort;
+    }
+
+    @GetMapping("pay/FeignTimeout")
+    public String paymentFeignTimeout() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(3);
+
         return serverPort;
     }
 
